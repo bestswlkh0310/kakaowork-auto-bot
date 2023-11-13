@@ -3,7 +3,7 @@ import time
 from bs4 import BeautifulSoup
 
 
-def getNews():
+def getDaumNews():
     driver = webdriver.Chrome()
 
     driver.get('https://news.daum.net/digital/#1')
@@ -24,8 +24,8 @@ def getNews():
     return result
 
 
-def makeMsgByNews(news):
-    result = ""
+def makeDaumNewsMsg(news):
+    result = ":: 다음 뉴스\n"
     for (idx, n) in enumerate(news):
         result += f"{idx + 1}. {n[0]}\n"
         result += f"바로가기 - {n[1]}\n\n"

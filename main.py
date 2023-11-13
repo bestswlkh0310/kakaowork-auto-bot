@@ -2,7 +2,8 @@ import pyautogui
 import pygetwindow as gw
 import keyboard
 from common import findUser, sendMsg
-from daumnews import getNews, makeMsgByNews
+from daumnews import getDaumNews, makeDaumNewsMsg
+from geeknews import getGeekNews, makeGeekNews
 
 window = gw.getWindowsWithTitle("카카오워크")[0]
 window.activate()
@@ -26,20 +27,35 @@ def send(name, *msgs):
 
 
 userList = [
-    '조성걸',
-    '박병준',
-    '양예성',
-    '문주호',
-    '노영재',
-    '박준현',
+    '권예림',
+    '신민호',
+    '김가영',
+    '임규연',
     '이슬아',
+    '이진식',
+    '김명준',
+    '박병준',
+    '권지용',
+    '민하윤'
 ]
 
-# newsList = getNews()
-#
-# newsText = makeMsgByNews(newsList)
+testUserList = [
+    '이강현',
+    # '제민국',
+    # '노영재',
+    # '김동찬'
+]
+
+newsList = getDaumNews()
+newsText = makeDaumNewsMsg(newsList)
 
 for user in userList:
-    send(user, "방금 보낸 것은 카카오워크 봇이 보낸 메세지입니다. 관심 있으시면 개인적으로 저에게 찾아와주세요")
+    send(user, newsText)
+
+newsList = getGeekNews()
+newsText = makeGeekNews(newsList)
+
+for user in userList:
+    send(user, newsText)
 
 keyboard.wait('esc')
